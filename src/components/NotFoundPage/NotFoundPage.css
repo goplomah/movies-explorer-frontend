@@ -35,3 +35,30 @@
   border: none;
   background-color: transparent;
 }
+
+@media screen and (max-width: 780px) {
+  .not-found-page__title {
+    padding-top: 407px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .not-found-page {
+    padding: 0 10px 0;
+  }
+
+  .not-found-page__title {
+    padding-top: 328px;
+    font-size: 80px;
+  }
+
+  .not-found-page__text {
+    padding: 10px 0 284px;
+    font-size: 12px;
+  }
+
+  .not-found-page__button {
+    margin-bottom: 30px;
+    font-size: 12px;
+  }
+}
