@@ -11,6 +11,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .form__title {
@@ -127,4 +128,38 @@
 .form__link {
   color: #4285F4;
   margin-left: 6px;
+}
+
+@media screen and (max-width: 780px) {
+  .register {
+    padding-top: 232px;
+    padding-bottom: 232px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register {
+    padding-top: 56px;
+    padding-bottom: 30px;
+    align-items: center;
+  }
+
+  .form__title {
+    margin-top: 47px;
+    margin-bottom: 80px;
+    text-align: center;
+  }
+
+  .form__button-wrapper {
+    padding-top: 158px;
+  }
+
+  .form__button {
+    font-size: 12px;
+  }
+
+  .form__send-text {
+    margin-top: 13px;
+    font-size: 12px;
+  }
 }
