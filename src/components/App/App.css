@@ -26,6 +26,15 @@
 }
 
 .opacity:hover {
-  opacity: 0.7;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.opacity_type_button {
+  transition: 0.4s linear;
+}
+
+.opacity_type_button:hover {
+  opacity: .8;
   cursor: pointer;
 }
