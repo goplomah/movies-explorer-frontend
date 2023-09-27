@@ -1,61 +1,44 @@
-import Logo from '../Logo/Logo';
 import { Link } from 'react-router-dom';
 import './Register.css';
+import AuthForm from '../AuthForm/AuthForm';
+import Input from '../Input/Input';
 
 function Register() {
     return (
         <section className='register'>
-            <Logo/>
-            <form className="form">
-                <h1 className="form__title">Добро пожаловать!</h1>
+            <AuthForm
+            title="Добро пожаловать!"
+            >
                 <div className="form__inputs">
-                    <label className="form__item">
-                        <p className="form__text">Имя</p>
-                        <input
-                        id="name-input"
-                        type="name"
-                        name="name"
-                        className="form__input"
-                        placeholder="введите имя"
-                        minLength="3"
-                        maxLength="30"
-                        required
-                        />
-                        <span className="form__error name-input-error"></span>
-                    </label>
-                    <label className="form__item">
-                        <p className="form__text">E-mail</p>
-                        <input
-                        id="email-input"
-                        type="email"
-                        name="email"
-                        className="form__input"
-                        placeholder="введите e-mail"
-                        required
-                        />
-                        <span className="form__error email-input-error"></span>
-                    </label>
-                    <label className="form__item">
-                        <p className="form__text">Пароль</p>
-                        <input
-                        id="password-input"
-                        type="password"
-                        name="password"
-                        className="form__input form__input-error"
-                        placeholder="введите пароль"
-                        minLength="5"
-                        maxLength="30"
-                        required
-                        />
-                        <span className="form__error password-input-error">Что-то пошло не так...</span>
-                    </label>
+                    <Input
+                      title='Имя'
+                      id="name-input"
+                      type="name"
+                      name="name"
+                      placeholder="введите имя"
+                    />
+                    <Input
+                      title='E-mail'
+                      id="email-input"
+                      type="email"
+                      name="email"
+                      placeholder="введите e-mail"
+                    />
+                    <Input
+                      title='Пароль'
+                      id="password-input"
+                      type="password"
+                      name="password"
+                      placeholder="введите пароль"
+                      error='Что-то пошло не так...'
+                    />
                 </div>
                 <div className="form__button-wrapper">
                 <button type="submit" className="form__button opacity_type_button">Зарегистрироваться</button>
                 <p className="form__send-text">Уже зарегистрированы?
                 <Link to="/signin" className="form__link opacity">Войти</Link></p>
                 </div>
-            </form>
+              </AuthForm>
         </section>
     )
 }
