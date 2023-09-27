@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 // import Movies from "../Movies/Movies";
 // import SavedMovies from "../SavedMovies/SavedMovies";
 import Register from "../Register/Register";
-// import Login from "../Login/Login";
+import Login from "../Login/Login";
 // import Profile from "../Profile/Profile";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
@@ -57,7 +57,7 @@ function App() {
 
         <Route
           path='/signin'
-          // element={<Login />}
+          element={<Login />}
         />
 
         <Route
