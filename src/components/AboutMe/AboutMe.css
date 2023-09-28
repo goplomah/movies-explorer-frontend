@@ -24,6 +24,10 @@
 .about-me__text-block {
   max-width: 600px;
   width: 100%;
+  display: flex;
+  min-height: 327px;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .about-me__name {
@@ -61,7 +65,6 @@
   padding: 0;
   display: inline-block;
   text-decoration: none;
-  margin-top: 99px;
   color: #fff;
 }
 
@@ -77,4 +80,41 @@
 
 .about-me__photo:hover {
   box-shadow: 3px 3px 5px #3DDC84;
+}
+
+@media screen and (max-width: 826px) {
+  .about-me {
+    padding: 90px 50px 91px;
+  }
+
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .about-me__wrapper {
+    gap: 49px;
+  }
+
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+
+  .about-me__description {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__text {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__text-block {
+    max-width: 355px;
+    min-height: 307px;
+  }
 }

@@ -45,3 +45,19 @@
   padding: 5px 5px 0 0;
   width: 20px;
 }
+
+@media screen and (max-width: 780px) {
+  .portfolio {
+    padding: 0 50px 91px;
+  }
+
+  .portfolio__link {
+    letter-spacing: -1.12px;
+    font-size: 28px;
+  }
+
+  .portfolio__arrow {
+    padding: 4px 4px 0 0;
+    width: 17px;
+  }
+}

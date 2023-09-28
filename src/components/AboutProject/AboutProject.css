@@ -88,3 +88,35 @@
   background-color: #303030;
   max-width: 912px;
 }
+
+@media screen and (max-width: 780px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+
+  .about-project__info {
+    width: 319px;
+  }
+
+  .about-project__info-wrapper {
+    gap: 30px;
+    margin-bottom: 94px;
+  }
+
+  .about-project__info {
+    gap: 22px;
+  }
+
+  .about-project__info-text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__scale-title_color_green {
+    width: 140px;
+  }
+
+  .about-project__scale-title_color_dark {
+    max-width: 528px;
+  }
+}
