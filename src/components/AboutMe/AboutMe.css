@@ -1,0 +1,80 @@
+.about-me {
+  margin: 0 auto;
+  padding: 110px 70px 101px;
+}
+
+.about-me__title {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #dadada;
+  margin: 0;
+}
+
+.about-me__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 66px;
+}
+
+.about-me__text-block {
+  max-width: 600px;
+  width: 100%;
+}
+
+.about-me__name {
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+  margin: 0;
+  padding: 0;
+}
+
+.about-me__description {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.about-me__text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 26px 0 0;
+}
+
+.about-me__link {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 0;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 99px;
+  color: #fff;
+}
+
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  display: block;
+  object-position: center;
+  object-fit: cover;
+  transition: 0.8s ease-in-out;
+}
+
+.about-me__photo:hover {
+  box-shadow: 3px 3px 5px #3DDC84;
+}

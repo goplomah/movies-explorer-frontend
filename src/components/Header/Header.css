@@ -1,0 +1,16 @@
+.header {
+  margin: 0 auto;
+  padding: 16px 70px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.header_color_blue {
+  background-color: #073042;
+}
+
+.header__wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
