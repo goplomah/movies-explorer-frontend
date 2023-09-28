@@ -9,12 +9,14 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 // import Profile from "../Profile/Profile";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
+import Scroll from '../Scroll/Scroll';
 
 function App() {
 
   return (
     <div className="root">
       <div className="page">
+        <Scroll />
         <Routes>
 
         <Route
