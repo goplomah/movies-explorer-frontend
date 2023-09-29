@@ -28,10 +28,28 @@
   .promo {
     min-height: 784px;
     background-position: top 224px center;
+    background-size: 248px;
   }
 
   .promo__title {
     padding-top: 223px;
     padding-bottom: 240px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .promo {
+    min-height: 570px;
+    background-position: top 142px center;
+  }
+
+  .promo__title {
+    font-size: 31px;
+    line-height: 39px;
+    letter-spacing: -1.24px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 207px;
+    padding-bottom: 246px;
   }
 }

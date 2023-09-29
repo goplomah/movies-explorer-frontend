@@ -25,3 +25,17 @@
   font-weight: 500;
   line-height: 16px;
 }
+
+@media screen and (max-width: 480px) {
+  .nav-tab {
+    padding-top: 24px;
+  }
+
+  .nav-tab__items {
+    gap: 24px;
+  }
+
+  .nav-tab__link {
+    font-size: 11px;
+  }
+}

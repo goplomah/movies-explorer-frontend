@@ -35,3 +35,18 @@
   background: #3DDC84;
   text-decoration: none;
 }
+
+@media screen and (max-width: 480px) {
+  .navigation__items {
+    gap: 14px;
+  }
+
+  .navigation__link {
+    font-size: 10px;
+  }
+
+  .navigation__button {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
