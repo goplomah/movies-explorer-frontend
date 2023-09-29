@@ -25,6 +25,7 @@ function App() {
             <>
               <Header
               landing={true}
+              loggedIn={true}
               />
               <Main />
               <Footer />
@@ -36,9 +37,9 @@ function App() {
           path='/movies'
           element={
             <>
-              {/* <Header /> */}
-              {/* <Movies />
-              <Footer /> */}
+              <Header loggedIn={true}/>
+              {/* <Movies /> */}
+              <Footer />
             </>
           }
         />

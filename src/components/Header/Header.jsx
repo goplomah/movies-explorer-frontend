@@ -1,13 +1,18 @@
 import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
+import { useLocation } from 'react-router-dom';
 
-function Header ({ landing }) {
+function Header ({ loggedIn }) {
+  const location = useLocation().pathname;
+
   return (
-    <header className={`header ${landing ? 'header_color_blue' : ''}`}>
+    <header className={`header ${location === '/' && 'header_color_blue'}`}>
       <div className='header__wraper'>
-        <Logo/>
-        <Navigation/>
+        <Logo />
+        <Navigation
+        loggedIn={loggedIn}
+        />
       </div>
     </header>
   )

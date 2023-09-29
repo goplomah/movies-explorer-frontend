@@ -1,0 +1,37 @@
+.account-icon {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 40px;
+  border: none;
+}
+
+.account-icon__link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 18px;
+  color: #fff;
+  text-decoration: none;
+  transition: .7s ease-in-out;
+  padding-right: 3px;
+}
+
+.account-icon__link::after {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background-image: url(../../images/account-icon.svg);
+  background-color: #0f4157;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.account-icon__link_color_dark::after {
+  background-color: #303030;
+}

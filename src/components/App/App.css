@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 .root {
@@ -22,7 +23,11 @@ html {
   -moz-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  }
+}
+
+.sticky {
+  flex-grow: 1;
+}
 
 .opacity {
   transition: 0.4s linear;
