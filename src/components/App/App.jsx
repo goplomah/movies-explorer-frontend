@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { Routes, Route } from "react-router-dom";
-// import Movies from "../Movies/Movies";
+import Movies from "../Movies/Movies";
 // import SavedMovies from "../SavedMovies/SavedMovies";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -38,7 +38,7 @@ function App() {
           element={
             <>
               <Header loggedIn={true}/>
-              {/* <Movies /> */}
+              <Movies />
               <Footer />
             </>
           }
