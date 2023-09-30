@@ -48,3 +48,33 @@
   border-radius: 50%;
   border: none;
 }
+
+@media screen and (max-width: 780px) {
+  .search {
+    padding: 79px 30px 0;
+  }
+
+  .search__form {
+    padding-bottom: 51px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .search__form-input::placeholder {
+    color: #8B8B8B;
+    font-size: 11px;
+  }
+
+  .search__form-input {
+    padding-left: 18px;
+  }
+
+  .search__form-wrapper {
+    padding-bottom: 45px;
+  }
+}

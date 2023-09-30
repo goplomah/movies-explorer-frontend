@@ -1,9 +1,16 @@
 import './MoviesCard.css';
 import image from '../../images/card__movie.jpg';
 import { useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 function MoviesCard() {
   const location = useLocation().pathname;
+  const [like, setLike] = useState(false);
+
+  const handleLikeClick = () => {
+    setLike(!like);
+  };
+
   return (
     <li className="card-item">
       <figure className="card">
@@ -13,7 +20,7 @@ function MoviesCard() {
           <h2 className="card__title">33 слова о дизайне</h2>
           {
             location === '/movies'
-            ? <button type="submit" className="card__button-like opacity_type_button"></button>
+            ? <button type="submit" className={like ? "card__button-like card__button-like_type_active opacity_type_button" : "card__button-like opacity_type_button"} onClick={handleLikeClick}></button>
             : <button type="button" className="card__button-delete opacity_type_button"></button>
           }
         </div>

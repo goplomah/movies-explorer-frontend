@@ -41,3 +41,45 @@
 .cards__button-more_visible_none {
   display: none;
 }
+
+@media screen and (max-width: 1024px) {
+  .cards__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .cards {
+    padding: 79px 30px 106px;
+  }
+
+  .cards__button-more {
+    margin-top: 79px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .cards__list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cards__button-more {
+    margin-top: 78px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cards {
+    padding: 46px 10px 102px;
+  }
+
+  .cards__list {
+    gap: 14px;
+  }
+
+  .card__content {
+    padding-bottom: 1px;
+  }
+}

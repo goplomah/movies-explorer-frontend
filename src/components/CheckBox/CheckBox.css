@@ -43,3 +43,11 @@
   line-height: 18px;
   margin-left: 12px;
 }
+
+@media screen and (max-width: 480px) {
+  .checkbox__title {
+    font-size: 11px;
+    line-height: 18px;
+    margin-left: 13px;
+  }
+}
