@@ -3,6 +3,10 @@
   padding: 57px 70px 0;
 }
 
+.footer_indentation_top {
+  margin-top: 167px;
+}
+
 .footer__title {
   font-size: 13px;
   font-style: normal;
@@ -57,6 +61,10 @@
     padding-left: 30px;
     padding-right: 30px;
   }
+
+  .footer_indentation_top {
+    margin-top: 88px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -89,5 +97,10 @@
     flex-direction: column-reverse;
     padding-top: 27px;
     padding-bottom: 20px;
+  }
+
+  .footer_indentation_top {
+    margin-top: 0px;
+    padding-top: 0;
   }
 }

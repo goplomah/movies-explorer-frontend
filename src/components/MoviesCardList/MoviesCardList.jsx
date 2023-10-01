@@ -6,13 +6,13 @@ function MoviesCardList() {
   const location = useLocation().pathname;
 
   return (
-    <section className="cards">
+    <section className={`cards ${location === '/saved-movies' && 'cards_indentation_bottom'}`}>
       <ul className="cards__list">
           <MoviesCard />
           <MoviesCard />
           <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
+          {/* <MoviesCard />
+          <MoviesCard /> */}
           {/* <MoviesCard />
           <MoviesCard />
           <MoviesCard /> */}
