@@ -1,6 +1,7 @@
 import './Navigation.css';
 import { Link } from 'react-router-dom';
 import AccountIcon from '../AccountIcon/AccountIcon';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function Navigation({ loggedIn }) {
   return (
@@ -16,6 +17,7 @@ function Navigation({ loggedIn }) {
           </li>
         </ul>
         :
+        <>
         <div className='navigation__items-wrapper_type_logged'>
           <ul className="navigation__items navigation__items_type_logged">
             <li className="navigation__item_type_logged">
@@ -27,6 +29,8 @@ function Navigation({ loggedIn }) {
           </ul>
           <AccountIcon />
         </div>
+          <BurgerMenu />
+        </>
       }
     </nav>
   )

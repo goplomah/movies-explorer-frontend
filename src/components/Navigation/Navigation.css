@@ -63,6 +63,16 @@
   margin-left: 10px;
 }
 
+@media screen and (max-width: 780px) {
+  .navigation__items-wrapper_type_logged {
+    display: none;
+  }
+
+  .navigation {
+    justify-content: flex-end;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .navigation__items {
     gap: 14px;
