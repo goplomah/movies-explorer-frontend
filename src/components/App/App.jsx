@@ -7,7 +7,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
-// import Profile from "../Profile/Profile";
+import Profile from "../Profile/Profile";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Scroll from '../Scroll/Scroll';
 
@@ -69,8 +69,8 @@ function App() {
           path='/profile'
           element={
             <>
-              {/* <Header /> */}
-              {/* <Profile /> */}
+              <Header loggedIn={true}/>
+              <Profile />
             </>
           }
         />

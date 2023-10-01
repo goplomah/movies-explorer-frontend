@@ -38,6 +38,10 @@
   font-weight: 500;
   line-height: normal;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 215px;
 }
 
 .card__button-like {
