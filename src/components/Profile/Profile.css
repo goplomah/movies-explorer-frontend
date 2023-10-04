@@ -130,6 +130,11 @@
   border: none;
 }
 
+.profile__button-exit-link {
+  text-decoration: none;
+  color: #ee3465;
+}
+
 .profile__button-save {
   margin: 0;
   padding: 13px 0 15px 0;

@@ -16,10 +16,8 @@
 
 }
 
-.form__button-wrapper {
-  padding-top: 158px;
-  display: flex;
-  flex-direction: column;
+.form__button-wrapper_type_login {
+  padding-top: 160px;
 }
 
 @media screen and (max-width: 780px) {
@@ -36,7 +34,7 @@
     align-items: center;
   }
 
-  .form__button-wrapper {
+  .form__button-wrapper_type_login {
     padding-top: 248px;
   }
 }

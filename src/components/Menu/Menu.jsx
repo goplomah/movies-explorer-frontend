@@ -25,7 +25,7 @@ function Menu({ isShow, handleShow }) {
           </Link>
         </li>
         </ul>
-        <div className="account__wrapper">
+        <div className="account-wrapper">
         <AccountIcon handleShow={handleShow}/>
         </div>
       </nav>

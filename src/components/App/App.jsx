@@ -25,7 +25,7 @@ function App() {
             <>
               <Header
               landing={true}
-              loggedIn={true}
+              loggedIn={!true}
               />
               <Main />
               <Footer />

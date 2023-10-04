@@ -4,7 +4,7 @@ import CheckBox from '../CheckBox/CheckBox';
 function SearchForm() {
   return (
     <section className="search">
-      <form className="search__form">
+      <form className="search__form" name='search'>
         <div className="search__form-wrapper">
           <input
           id="search-input"

@@ -10,7 +10,7 @@ function MoviesCardList() {
       <ul className="cards__list">
           <MoviesCard />
           <MoviesCard />
-          <MoviesCard />
+          {/* <MoviesCard /> */}
           {/* <MoviesCard />
           <MoviesCard /> */}
           {/* <MoviesCard />

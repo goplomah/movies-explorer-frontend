@@ -10,7 +10,7 @@ function BurgerMenu() {
   };
 
   return (
-    <div className={`burger ${isShow && "burger__translate"}`}>
+    <div className={`burger ${isShow && "burger-translate"}`}>
       <Menu isShow={isShow} handleShow={handleShow} />
       <button type='button' className="burger__button" onClick={handleShow}>
         <span className={`burger__line ${isShow && "burger__line-1"}`}></span>

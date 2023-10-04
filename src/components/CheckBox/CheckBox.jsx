@@ -7,15 +7,15 @@ function CheckBox() {
 
   return (
     <div className='checkbox__wrapper'>
-    <label className="checkbox">
+    <label className="checkbox" id='checkbox'>
       <input
         className="checkbox__input"
         type="checkbox"
+        htmlFor='checkbox'
         onClick={() => play()}/>
       <div className="checkbox__switcher"></div>
-      {/* <span className="checkbox__title">Короткометражки</span> */}
+    <span className="checkbox__title" htmlFor='checkbox'>Короткометражки</span>
     </label>
-    <span className="checkbox__title">Короткометражки</span>
     </div>
   )
 }

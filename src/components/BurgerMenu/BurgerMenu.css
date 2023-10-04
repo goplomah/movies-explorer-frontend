@@ -6,7 +6,7 @@
   transition: all .7s;
 }
 
-.burger__translate {
+.burger-translate {
   width: 24px;
   margin-right: -4px;
 }

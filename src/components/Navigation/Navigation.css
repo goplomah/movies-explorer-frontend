@@ -47,7 +47,7 @@
   text-decoration: none;
 }
 
-.navigation__items-wrapper_type_logged {
+.navigation__items-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,7 +64,7 @@
 }
 
 @media screen and (max-width: 780px) {
-  .navigation__items-wrapper_type_logged {
+  .navigation__items-wrapper {
     display: none;
   }
 

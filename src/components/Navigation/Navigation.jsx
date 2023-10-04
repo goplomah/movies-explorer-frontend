@@ -18,12 +18,12 @@ function Navigation({ loggedIn }) {
         </ul>
         :
         <>
-        <div className='navigation__items-wrapper_type_logged'>
+        <div className='navigation__items-wrapper'>
           <ul className="navigation__items navigation__items_type_logged">
-            <li className="navigation__item_type_logged">
+            <li className=" navigation__item navigation__item_type_logged">
               <Link className='navigation__link navigation__link_type_logged opacity' to='/movies'>Фильмы</Link>
             </li>
-            <li className="navigation__item_type_logged">
+            <li className="navigation__item navigation__item_type_logged">
               <Link className='navigation__link navigation__link_type_logged opacity' to='/saved-movies'>Сохранённые фильмы</Link>
             </li>
           </ul>
