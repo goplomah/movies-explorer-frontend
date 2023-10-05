@@ -1,0 +1,140 @@
+.tech {
+  margin: 0;
+  padding: 102px 70px;
+  background-color: #272727;
+}
+
+.tech__title {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #dadada;
+  margin: 0;
+}
+
+.seven-techs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.seven-techs__title {
+  margin: 0;
+  padding-top: 91px;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.seven-techs__text {
+  margin: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding-top: 26px;
+  padding-bottom: 100px;
+  max-width: 460px;
+  text-align: center;
+  letter-spacing: -0.56px;
+}
+
+.seven-techs__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.seven-techs__item {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  width: 90px;
+  box-sizing: border-box;
+  background-color: #303030;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 21px;
+  padding-bottom: 22px;
+  transition: .8s ease-in-out;
+}
+
+.seven-techs__item:hover {
+  background-color: #3DDC84;
+  transform: scale(1.1);
+}
+
+.seven-techs__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 780px) {
+  .tech {
+    padding: 90px 50px;
+  }
+
+  .seven-techs__title {
+    padding-top: 82px;
+  }
+
+  .seven-techs__text {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.48px;
+    padding-top: 22px;
+    padding-bottom: 83px;
+  }
+
+  .seven-techs__item {
+    font-size: 12px;
+    width: 84px;
+    letter-spacing: -0.48px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tech {
+    padding: 70px 18px;
+  }
+
+  .tech__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 25px;
+  }
+
+  .seven-techs__title {
+    padding-top: 61px;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+
+  .seven-techs__text {
+    font-size: 11px;
+    line-height: 16px;
+    padding-top: 25px;
+    padding-bottom: 50px;
+    max-width: 460px;
+    letter-spacing: -0.44px;
+  }
+
+  .seven-techs__items {
+    max-width: 180px;
+    justify-content: flex-start;
+  }
+}

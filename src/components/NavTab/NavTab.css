@@ -1,0 +1,41 @@
+.nav-tab {
+  margin: 0 auto;
+  padding: 25px 10px;
+  background-color: #272727;
+}
+
+.nav-tab__items {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  gap: 40px;
+}
+
+.nav-tab__item {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-tab__link {
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@media screen and (max-width: 480px) {
+  .nav-tab {
+    padding-top: 24px;
+  }
+
+  .nav-tab__items {
+    gap: 24px;
+  }
+
+  .nav-tab__link {
+    font-size: 11px;
+  }
+}

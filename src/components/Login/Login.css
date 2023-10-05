@@ -1,0 +1,40 @@
+.login {
+  margin: 0 auto;
+  padding: 70px 30px;
+  max-width: 456px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.email-input-error {
+
+}
+
+.password-input-error {
+
+}
+
+.form__button-wrapper_type_login {
+  padding-top: 160px;
+}
+
+@media screen and (max-width: 780px) {
+  .login {
+    padding-top: 232px;
+    padding-bottom: 232px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login {
+    padding-top: 56px;
+    padding-bottom: 30px;
+    align-items: center;
+  }
+
+  .form__button-wrapper_type_login {
+    padding-top: 248px;
+  }
+}
