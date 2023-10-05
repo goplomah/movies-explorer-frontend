@@ -54,4 +54,5 @@ class Authorization {
 const authorization = new Authorization({
   dataBase: "http://localhost:3000",
 });
+
 export default authorization;
