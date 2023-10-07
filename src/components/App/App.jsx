@@ -75,7 +75,7 @@ function App() {
       .then((res) => {
         if (res) {
           setIsSuccessReg(true);
-          navigate("/signin", { replace: true });
+          handleLogin(email, password);
           console.log('yes')
         }
       })
@@ -87,6 +87,25 @@ function App() {
         setIsInfoTooltipOpen(true);
       });
   };
+
+  const handleLogin = (email, password) => {
+    setLoading(true);
+    authorization
+      .login(email, password)
+      .then((res) => {
+        console.log('yes')
+        localStorage.setItem('token', res.token);
+        setLoggedIn(true);
+        navigate('/movies', {replace: true});
+      })
+      .catch((err) => {
+        setIsSuccessReg(false);
+        setIsInfoTooltipOpen(true)
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -141,7 +160,10 @@ function App() {
 
         <Route
           path='/signin'
-          element={<Login />}
+          element={<Login
+            onLogin={handleLogin}
+            Loading={Loading}
+          />}
         />
 
         <Route

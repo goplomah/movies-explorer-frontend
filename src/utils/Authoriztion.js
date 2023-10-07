@@ -28,13 +28,13 @@ class Authorization {
     });
   }
 
-  login(password, email) {
+  login(email, password) {
     return this._request("signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        password,
         email,
+        password,
       }),
     });
   }
