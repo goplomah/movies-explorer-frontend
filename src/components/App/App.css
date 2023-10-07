@@ -59,3 +59,7 @@ html {
 .rotate {
   animation: preloader-rotate 2s infinite linear;
 }
+
+.scale:hover {
+  transform: scale(1.03);
+}

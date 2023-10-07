@@ -16,6 +16,7 @@ import authorization from '../../utils/Authoriztion.js';
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +24,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserMovies, setCurrentUserMovies] = useState([]);
   const [isSuccessReg, setIsSuccessReg] = useState(false);
-  // const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+
+  const closePopup = () => {
+    setIsInfoTooltipOpen(false);
+  };
 
 
   const location = useLocation();
@@ -79,7 +84,7 @@ function App() {
       })
       .finally(() => {
         setLoading(false);
-        // setIsInfoTooltipOpen(true);
+        setIsInfoTooltipOpen(true);
       });
   };
 
@@ -155,6 +160,11 @@ function App() {
         />
 
       </Routes>
+      <InfoTooltip
+        isOpen={isInfoTooltipOpen}
+        onClose={closePopup}
+        isSuccessReg={isSuccessReg}
+      />
       </div>
     </div>
     </CurrentUserContext.Provider>

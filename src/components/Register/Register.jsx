@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './Register.css';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
-import { useFormAndValidation } from '../hooks/useFormAndValidation';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import Spinner from '../Spinner/Spinner';
 
 function Register({ onRegister, Loading }) {
@@ -55,7 +55,7 @@ function Register({ onRegister, Loading }) {
                 />
                 </div>
                 <div className="form__button-wrapper form__button-wrapper_type_register">
-                <button type="submit" className={`${isValid ? 'form__button opacity_type_button' : 'form__button opacity_type_button form__button_type_disabled'} || ${Loading && 'form__button_type_disabled'}`}>{Loading ? <Spinner /> : "Зарегистрироваться"}</button>
+                <button type="submit" className={`${isValid ? 'form__button opacity_type_button' : 'form__button opacity_type_button form__button_type_disabled'} || ${Loading && 'form__button_type_disabled form__button_type_spinner'}`}>{Loading ? <Spinner /> : "Зарегистрироваться"}</button>
                 <p className="form__send-text">Уже зарегистрированы?
                 <Link to="/signin" className="form__link opacity">Войти</Link></p>
                 </div>
