@@ -88,6 +88,12 @@
   border: none;
 }
 
+.form__button_type_disabled {
+  opacity: 0.2;
+  color: #000;
+  pointer-events: none;
+}
+
 .form__send-text {
   margin: 16px 0 0;
   color: #8B8B8B;
@@ -116,10 +122,6 @@
     margin-bottom: 80px;
     text-align: center;
   }
-
-  /* .form__button-wrapper {
-    padding-top: 158px;
-  } */
 
   .form__button {
     font-size: 12px;

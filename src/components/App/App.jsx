@@ -11,7 +11,7 @@ import Profile from "../Profile/Profile";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Scroll from '../Scroll/Scroll';
 import { useEffect, useState } from "react";
-import { mainApi } from '../../utils/MainApi';
+// import  mainApi  from '../../utils/MainApi';
 import authorization from '../../utils/Authoriztion.js';
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,9 @@ function App() {
   const [Loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserMovies, setCurrentUserMovies] = useState([]);
+  // const [isSuccessReg, setIsSuccessReg] = useState(false);
+  // const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,39 +33,55 @@ function App() {
     console.log(`Упс...Ошибка получения данных с сервера: ${err}`);
   };
 
-  useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        authorization
-          .checkToken()
-          .then((res) => {
-            if (res) {
-              setLoggedIn(true);
-              navigate(location, { replace: true });
-            }
-          })
-          .catch(() => {
-            localStorage.removeItem('token');
-          });
-      };
-  }, [loggedIn, navigate]);
+  // useEffect(() => {
+  //     const token = localStorage.getItem("token");
+  //     if (token) {
+  //       authorization
+  //         .checkToken()
+  //         .then((res) => {
+  //           if (res) {
+  //             setLoggedIn(true);
+  //             navigate(location, { replace: true });
+  //           }
+  //         })
+  //         .catch(() => {
+  //           localStorage.removeItem('token');
+  //         });
+  //     };
+  // }, [loggedIn, navigate]);
 
 
 
-  useEffect(() => {
-    if (loggedIn) {
-      Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
-        .then(([me, movies]) => {
-          setCurrentUser(me);
-          setCurrentUserMovies(movies);
-        })
-        .catch(handleCatchError);
-    }
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
+  //       .then(([me, movies]) => {
+  //         setCurrentUser(me);
+  //         setCurrentUserMovies(movies);
+  //       })
+  //       .catch(handleCatchError);
+  //   }
+  // }, [loggedIn]);
 
-
-
-
+  const handleRegister = (name, email, password) => {
+    // setLoading(true);
+    authorization
+      .registration(name, email, password)
+      .then((res) => {
+        if (res) {
+          // setIsSuccessReg(true);
+          navigate("/sign-in", { replace: true });
+          console.log('yes')
+        }
+      })
+      .catch(() => {
+        // setIsSuccessReg(false);
+      })
+      .finally(() => {
+        // setLoading(false);
+        // setIsInfoTooltipOpen(true);
+      });
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -109,7 +128,9 @@ function App() {
 
         <Route
         path='/signup'
-        element={<Register />}
+        element={<Register
+          onRegister={handleRegister}
+        />}
         />
 
         <Route

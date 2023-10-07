@@ -3,12 +3,6 @@ class Authorization {
     this._dataBase = dataBase;
   }
 
-  _request(endpoint, option) {
-    return fetch(`${this._dataBase + endpoint}`, option).then((res) =>
-      this._checkResponse(res)
-    );
-  }
-
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -16,14 +10,20 @@ class Authorization {
     return Promise.reject(`Упс... Ошибка: ${res.status}`);
   }
 
-  registration(name, password, email) {
+  _request(endpoint, option) {
+    return fetch(`${this._dataBase + endpoint}`, option).then((res) =>
+      this._checkResponse(res)
+    );
+  }
+
+  registration(name, email, password) {
     return this._request("signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name,
-        password,
         email,
+        password
       }),
     });
   }
@@ -52,7 +52,7 @@ class Authorization {
 }
 
 const authorization = new Authorization({
-  dataBase: "http://localhost:3000",
+  dataBase: "http://localhost:3000/",
 });
 
 export default authorization;
