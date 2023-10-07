@@ -1,12 +1,26 @@
 import './Profile.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useContext, useEffect } from 'react';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 function Profile({ onExit }) {
+  const currentUser = useContext(CurrentUserContext);
+  const {values, handleChange, isValid, setValues} = useFormAndValidation();
+
+  useEffect(() => {
+    if (currentUser) {
+      setValues({
+        name: currentUser.name,
+        email: currentUser.email
+      });
+    }
+  }, [currentUser, setValues]);
 
 
   return (
     <main className='sticky'>
     <section className="profile">
-      <h1 className="profile__title">Привет, Виталий!</h1>
+      <h1 className="profile__title">Привет, {currentUser.name}!</h1>
       <form className="profile__form" name='profile'>
         <div className="profile__form-inputs">
           <div className="profile__form-item">

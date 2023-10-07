@@ -90,6 +90,8 @@ class MainApi {
 
 }
 
-export const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3000',
+const mainApi = new MainApi({
+  dataBase: 'http://localhost:3000/',
 });
+
+export default mainApi;
