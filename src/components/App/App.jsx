@@ -17,6 +17,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -62,7 +63,7 @@ function App() {
       Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
         .then(([me, movies]) => {
           setCurrentUser(me);
-          setCurrentUserMovies(movies);
+          // setCurrentUserMovies(movies);
         })
         .catch(handleCatchError);
     }
@@ -114,6 +115,15 @@ function App() {
     navigate('/', {replace: true});
   };
 
+  const handleUpdateUser = (data) => {
+    return mainApi
+      .setUserInfo(data)
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch(handleCatchError);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="root">
@@ -138,22 +148,32 @@ function App() {
         <Route
           path='/movies'
           element={
+            <ProtectedRoute
+            loggedIn={loggedIn}
+            element={
             <>
-              <Header loggedIn={true}/>
+              <Header loggedIn={loggedIn}/>
               <Movies />
               <Footer />
             </>
           }
+          ></ProtectedRoute>
+        }
         />
 
         <Route
           path='/saved-movies'
           element={
+            <ProtectedRoute
+            loggedIn={loggedIn}
+            element={
             <>
-              <Header loggedIn={true}/>
+              <Header loggedIn={loggedIn}/>
               <SavedMovies />
               <Footer />
             </>
+            }
+            ></ProtectedRoute>
           }
         />
 
@@ -176,14 +196,20 @@ function App() {
         <Route
           path='/profile'
           element={
+            <ProtectedRoute
+            loggedIn={loggedIn}
+            element={
             <>
-              <Header loggedIn={true}/>
+              <Header loggedIn={loggedIn}/>
               <Profile
                 onExit={handleExit}
+                onUpdateUser={handleUpdateUser}
               />
             </>
-          }
-        />
+         }
+         ></ProtectedRoute>
+       }
+     />
 
         <Route
         path='*'
