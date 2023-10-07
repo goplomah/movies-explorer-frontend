@@ -3,8 +3,9 @@ import './Register.css';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import { useFormAndValidation } from '../hooks/useFormAndValidation';
+import Spinner from '../Spinner/Spinner';
 
-function Register({ onRegister }) {
+function Register({ onRegister, Loading }) {
   const {values, handleChange, errors, isValid} = useFormAndValidation();
 
   const handleSubmit = (e) => {
@@ -54,7 +55,7 @@ function Register({ onRegister }) {
                 />
                 </div>
                 <div className="form__button-wrapper form__button-wrapper_type_register">
-                <button type="submit" className={`${isValid ? 'form__button opacity_type_button' : 'form__button opacity_type_button form__button_type_disabled'}`}>Зарегистрироваться</button>
+                <button type="submit" className={`${isValid ? 'form__button opacity_type_button' : 'form__button opacity_type_button form__button_type_disabled'} || ${Loading && 'form__button_type_disabled'}`}>{Loading ? <Spinner /> : "Зарегистрироваться"}</button>
                 <p className="form__send-text">Уже зарегистрированы?
                 <Link to="/signin" className="form__link opacity">Войти</Link></p>
                 </div>

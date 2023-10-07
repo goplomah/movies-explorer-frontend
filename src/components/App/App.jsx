@@ -22,7 +22,7 @@ function App() {
   const [Loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserMovies, setCurrentUserMovies] = useState([]);
-  // const [isSuccessReg, setIsSuccessReg] = useState(false);
+  const [isSuccessReg, setIsSuccessReg] = useState(false);
   // const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
 
@@ -64,21 +64,21 @@ function App() {
   // }, [loggedIn]);
 
   const handleRegister = (name, email, password) => {
-    // setLoading(true);
+    setLoading(true);
     authorization
       .registration(name, email, password)
       .then((res) => {
         if (res) {
-          // setIsSuccessReg(true);
-          navigate("/sign-in", { replace: true });
+          setIsSuccessReg(true);
+          navigate("/signin", { replace: true });
           console.log('yes')
         }
       })
       .catch(() => {
-        // setIsSuccessReg(false);
+        setIsSuccessReg(false);
       })
       .finally(() => {
-        // setLoading(false);
+        setLoading(false);
         // setIsInfoTooltipOpen(true);
       });
   };
@@ -130,6 +130,7 @@ function App() {
         path='/signup'
         element={<Register
           onRegister={handleRegister}
+          Loading={Loading}
         />}
         />
 

@@ -1,0 +1,10 @@
+.spinner {
+  width: 19px;
+  height: 19px;
+  display: flex;
+}
+
+.preloader-button {
+  width: 19px;
+  height: 19px;
+}

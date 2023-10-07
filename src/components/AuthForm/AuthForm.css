@@ -86,6 +86,10 @@
   font-weight: 500;
   line-height: normal;
   border: none;
+  display: flex;
+  justify-content: center;
+  height: 45px;
+  align-items: center;
 }
 
 .form__button_type_disabled {
