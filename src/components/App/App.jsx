@@ -107,6 +107,13 @@ function App() {
       });
   }
 
+  const handleExit = () => {
+    setLoggedIn(false);
+    setCurrentUser({});
+    localStorage.removeItem('token');
+    navigate('/', {replace: true});
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="root">
@@ -171,7 +178,9 @@ function App() {
           element={
             <>
               <Header loggedIn={true}/>
-              <Profile />
+              <Profile
+                onExit={handleExit}
+              />
             </>
           }
         />

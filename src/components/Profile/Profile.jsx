@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
 import './Profile.css';
 
-function Profile() {
+function Profile({ onExit }) {
+
+
   return (
     <main className='sticky'>
     <section className="profile">
@@ -47,8 +48,8 @@ function Profile() {
       <button className='profile__button-edit opacity_type_button' type='button'>
         Редактировать
       </button>
-      <button className='profile__button-exit opacity_type_button' type='button'>
-      <Link to="/signin" className='profile__button-exit-link'>Выйти из аккаунта</Link>
+      <button className='profile__button-exit opacity_type_button profile__button-exit-link' type='button' onClick={onExit}>
+      Выйти из аккаунта
       </button>
       <button className='profile__button-save opacity_type_button' type='submit'>
         Сохранить
