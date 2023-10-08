@@ -32,6 +32,7 @@ function Register({ onRegister, Loading }) {
                   onChange={handleChange}
                   value={values.name || ""}
                   error={errors.name}
+                  pattern={'^[A-Za-zА-Яа-яЁё\\-\\s]+$'}
                 />
                 <Input
                   title='E-mail'

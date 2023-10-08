@@ -23,7 +23,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [currentUserMovies, setCurrentUserMovies] = useState([]);
+  // const [currentUserMovies, setCurrentUserMovies] = useState([]);
   const [isSuccessReg, setIsSuccessReg] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
@@ -40,34 +40,38 @@ function App() {
   };
 
   useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        authorization
-          .checkToken()
-          .then((res) => {
-            if (res) {
-              setLoggedIn(true);
-              navigate(location, { replace: true });
-            }
-          })
-          .catch(() => {
-            localStorage.removeItem('token');
-          });
-      };
-  }, [loggedIn, navigate]);
-
-
+    checkToken();
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
+        Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
         .then(([me, movies]) => {
           setCurrentUser(me);
-          // setCurrentUserMovies(movies);
         })
         .catch(handleCatchError);
-    }
+
+      }
   }, [loggedIn]);
+
+  function checkToken() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      authorization
+      .checkToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            navigate(location, { replace: true });
+          }
+        })
+        .catch((err) => {
+            setLoggedIn(false);
+            localStorage.clear();
+            console.log(err);
+        });
+    };
+  };
 
   const handleRegister = (name, email, password) => {
     setLoading(true);
@@ -115,13 +119,21 @@ function App() {
     navigate('/', {replace: true});
   };
 
-  const handleUpdateUser = (data) => {
+  const handleUpdateUser = (name, email) => {
     return mainApi
-      .setUserInfo(data)
+      .setUserInfo(name, email)
       .then((res) => {
+        setIsSuccessReg(true);
         setCurrentUser(res);
+        console.log('updateuser');
       })
-      .catch(handleCatchError);
+      .catch(() => {
+        setIsSuccessReg(false);
+      })
+      .finally(() => {
+        setLoading(false);
+        setIsInfoTooltipOpen(true);
+      });
   }
 
   return (
@@ -136,8 +148,7 @@ function App() {
           element={
             <>
               <Header
-              landing={true}
-              loggedIn={!true}
+              loggedIn={loggedIn}
               />
               <Main />
               <Footer />

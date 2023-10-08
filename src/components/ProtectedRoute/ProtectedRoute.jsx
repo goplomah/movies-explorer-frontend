@@ -2,6 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({element, loggedIn}) => {
   const location = useLocation();
+
   return loggedIn ? (
     element
   ) : (

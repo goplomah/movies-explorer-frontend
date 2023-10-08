@@ -1,11 +1,11 @@
-import './Profile.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { useContext, useEffect } from 'react';
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import "./Profile.css";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext, useEffect } from "react";
 
-function Profile({ onExit, onUpdateUser}) {
+function Profile({ onExit, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
-  const {values, handleChange, isValid, setValues} = useFormAndValidation();
+  const {values, handleChange, isValid, setValues, errors} = useFormAndValidation();
 
   useEffect(() => {
     if (currentUser) {
@@ -16,72 +16,65 @@ function Profile({ onExit, onUpdateUser}) {
     }
   }, [currentUser, setValues]);
 
-  function handleProfileSubmit(e) {
-    e.preventDefault();
-    onUpdateUser(values);
+  function handleProfileSubmit(evt) {
+    evt.preventDefault();
+    onUpdateUser({
+      name: values.name,
+      email: values.email,
+    });
   };
-
 
   return (
     <main className='sticky'>
-    <section className="profile">
+    <section className='profile'>
       <h1 className="profile__title">Привет, {currentUser.name}!</h1>
       <form className="profile__form" name='profile' onSubmit={handleProfileSubmit}>
         <div className="profile__form-inputs">
           <div className="profile__form-item">
-          <div className="profile__form-input-wrapper">
-            <span className="profile__form-input-title">{currentUser.name}</span>
+            <div className="profile__form-input-wrapper">
+          <span className="profile__form-input-title">{currentUser.name}</span>
             <input
-                className='profile__form-input'
-                id='name-input'
-                type='text'
-                name='profile-name'
-                placeholder='Имя'
-                minLength='3'
-                maxLength='30'
-                required
-                // onChange={handleChange}
-                // value={values.name || ""}
-              />
-          </div>
-          <span className='profile__form-input-error'></span>
+              id="input-name"
+              className="profile__form-input"
+              name="name"
+              type="name"
+              placeholder="Имя"
+              minLength="3"
+              maxLength="30"
+              required
+              onChange={handleChange}
+              value={values.name || ""}
+            />
+            </div>
+            <span className='profile__form-input-error'>{errors.name}</span>
           </div>
           <div className="profile__form-item">
           <div className="profile__form-input-wrapper">
-            <span className="profile__form-input-title">{currentUser.email}</span>
+          <span className="profile__form-input-title">{currentUser.email}</span>
             <input
-                className='profile__form-input'
-                id='email-input'
-                type='email'
-                name='profile-email'
-                placeholder='E-mail'
-                required
-                // onChange={handleChange}
-                // value={values.email || ""}
-              />
-          </div>
-          <span className='profile__form-input-error'></span>
+              id="input-email"
+              className="profile__form-input"
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              minLength="9"
+              required
+              onChange={handleChange}
+              value={values.email || ""}
+            />
+            </div>
+            <span className='profile__form-input-error'>{errors.email}</span>
           </div>
         </div>
+        <div className="profile__button-wrapper">
+             <button type="submit" className={`profile__button-edit opacity_type_button ${(!isValid || (values.name === currentUser.name && values.email === currentUser.email)) && 'profile__button-edit_type_disabled'}`}
+            >Редактировать</button>
+          <button type="button" className="profile__button-exit opacity_type_button profile__button-exit-link" onClick={onExit}>Выйти из аккаунта</button>
+        </div>
       </form>
-      <div className='profile__button-wrapper'>
-      <span className='profile__server-error'></span>
-      <button className={`profile__button-edit opacity_type_button`}
-      // ${(!isValid || (values.name === currentUser.name || values.email === currentUser.email)) && 'profile__button-edit_type_disabled'}
-      // `}
-       type='submit'>
-        Редактировать
-      </button>
-      <button className='profile__button-exit opacity_type_button profile__button-exit-link' type='button' onClick={onExit}>
-      Выйти из аккаунта
-      </button>
-      {/* <button className='profile__button-save opacity_type_button' type='submit'>
-        Сохранить
-      </button> */}
-      </div>
     </section>
     </main>
   )
-}
+};
 
 export default Profile;

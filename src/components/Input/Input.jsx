@@ -1,4 +1,4 @@
-function Input ({ title, id, type, name, placeholder, error, onChange }) {
+function Input ({ title, id, type, name, placeholder, error, onChange, pattern }) {
   const lengthProperties =
   type === "name"
   ? { minLength: 3, maxLength: 30 }
@@ -17,6 +17,7 @@ function Input ({ title, id, type, name, placeholder, error, onChange }) {
         required
         {...lengthProperties}
         onChange={onChange}
+        pattern={pattern}
         />
       <span className="form__error">{error}</span>
     </label>
