@@ -26,6 +26,9 @@ function App() {
   // const [currentUserMovies, setCurrentUserMovies] = useState([]);
   const [isSuccessReg, setIsSuccessReg] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [registerError, setRegisterError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [updateUserError, setUpdateUserError] = useState("");
 
   const closePopup = () => {
     setIsInfoTooltipOpen(false);
@@ -84,8 +87,13 @@ function App() {
           console.log('yes')
         }
       })
-      .catch(() => {
+      .catch((err) => {
         setIsSuccessReg(false);
+        if (err.includes(409)) {
+          setRegisterError("Пользователь с таким email уже существует");
+        } else {
+          setRegisterError("При регистрации пользователя произошла ошибка");
+        }
       })
       .finally(() => {
         setLoading(false);
@@ -105,7 +113,12 @@ function App() {
       })
       .catch((err) => {
         setIsSuccessReg(false);
-        setIsInfoTooltipOpen(true)
+        setIsInfoTooltipOpen(true);
+        if (err.includes(401)) {
+          setLoginError("Что-то не так с паролем или почтой.");
+        } else {
+          setLoginError("Ошибка авторизации.");
+        }
       })
       .finally(() => {
         setLoading(false);
@@ -127,8 +140,13 @@ function App() {
         setCurrentUser(res);
         console.log('updateuser');
       })
-      .catch(() => {
+      .catch((err) => {
         setIsSuccessReg(false);
+        if (err.includes(500)) {
+          setUpdateUserError("Пользователь с таким email уже существует.");
+        } else {
+          setUpdateUserError("При обновлении профиля произошла ошибка.");
+        }
       })
       .finally(() => {
         setLoading(false);
@@ -232,6 +250,9 @@ function App() {
         isOpen={isInfoTooltipOpen}
         onClose={closePopup}
         isSuccessReg={isSuccessReg}
+        registerError={registerError}
+        loginError={loginError}
+        updateUserError={updateUserError}
       />
       </div>
     </div>
