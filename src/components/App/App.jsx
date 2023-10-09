@@ -18,12 +18,13 @@ import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import moviesApi from '../../utils/MoviesApi';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  // const [currentUserMovies, setCurrentUserMovies] = useState([]);
+  const [currentUserMovies, setCurrentUserMovies] = useState([]);
   const [isSuccessReg, setIsSuccessReg] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [registerError, setRegisterError] = useState("");
@@ -51,9 +52,9 @@ function App() {
         Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
         .then(([me, movies]) => {
           setCurrentUser(me);
+          setCurrentUserMovies(movies);
         })
         .catch(handleCatchError);
-
       }
   }, [loggedIn]);
 
@@ -154,6 +155,38 @@ function App() {
       });
   }
 
+  const handleMovies = () => {
+  moviesApi
+      .getAllMovies()
+      .then((res) => {
+        return res;
+      })
+      .catch(handleCatchError);
+  };
+
+  const handleLikeMovie = (movie) => {
+    mainApi
+      .likeMovie(movie)
+      .then((res) => {
+        setCurrentUserMovies([res, ...currentUserMovies]);
+      })
+      .catch(handleCatchError);
+  }
+
+  const handleDeleteMovie = (_id) => {
+    mainApi
+      .deleteMovie(_id)
+      .then(() => {
+        const updateCurrentUserMovies = currentUserMovies.filter(
+          (movies) => !(_id === movies._id)
+        );
+        setCurrentUserMovies(updateCurrentUserMovies);
+      })
+      .catch(handleCatchError);
+  }
+
+
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="root">
@@ -182,7 +215,12 @@ function App() {
             element={
             <>
               <Header loggedIn={loggedIn}/>
-              <Movies />
+              <Movies
+                handleMovies={handleMovies}
+                handleLikeMovie={handleLikeMovie}
+                handleDeleteMovie={handleDeleteMovie}
+                currentUserMovies={currentUserMovies}
+              />
               <Footer />
             </>
           }
@@ -198,7 +236,10 @@ function App() {
             element={
             <>
               <Header loggedIn={loggedIn}/>
-              <SavedMovies />
+              <SavedMovies
+                handleDeleteMovie={handleDeleteMovie}
+                currentUserMovies={currentUserMovies}
+              />
               <Footer />
             </>
             }
