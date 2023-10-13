@@ -77,9 +77,9 @@ class MainApi {
     })
   }
 
-  deleteMovie(_id) {
+  deleteMovies(_id) {
     const token = localStorage.getItem('token');
-    return this._request("movies/${_id}", {
+    return this._request(`movies/${_id}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
@@ -87,11 +87,11 @@ class MainApi {
       },
     });
   }
-
 }
 
 const mainApi = new MainApi({
-  dataBase: 'http://localhost:3000/',
+  dataBase: 'https://api.goplomah.nomoredomains.sbs/',
+  // dataBase: 'http://localhost:3000/',
 });
 
 export default mainApi;

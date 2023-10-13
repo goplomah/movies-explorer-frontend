@@ -22,22 +22,37 @@ import moviesApi from '../../utils/MoviesApi';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [Loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [currentUserMovies, setCurrentUserMovies] = useState([]);
   const [isSuccessReg, setIsSuccessReg] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [registerError, setRegisterError] = useState("");
   const [loginError, setLoginError] = useState("");
   const [updateUserError, setUpdateUserError] = useState("");
+  const [renderMovies, setRenderMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [stringSearch, setStringSearch] = useState("");
+  const [checkbox, setCheckbox] = useState(JSON.parse(localStorage.getItem("checkbox")));
+  const [resStringNotFound, setResStringNotFound] = useState(true);
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [filteredSaveMovies, setFilteredSaveMovies] = useState([]);
+  const [savedCheckbox, setSavedCheckbox] = useState(false);
+  const [resStringNotFoundSaved, setResStringNotFoundSaved] = useState(true);
+  const [stringSearchSaved, setStringSearchSaved] = useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  function filterMovies(stringSearch, movies) {
+    return movies.filter((film) =>
+      film.nameRU.toLowerCase().includes(stringSearch.toLowerCase()) ||
+      film.nameEN.toLowerCase().includes(stringSearch.toLowerCase())
+    );
+  };
 
   const closePopup = () => {
     setIsInfoTooltipOpen(false);
   };
-
-
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const handleCatchError = (err) => {
     console.log(`Упс...Ошибка получения данных с сервера: ${err}`);
@@ -52,11 +67,13 @@ function App() {
         Promise.all([mainApi.getUserInfo(), mainApi.getMovies()])
         .then(([me, movies]) => {
           setCurrentUser(me);
-          setCurrentUserMovies(movies);
+          setSavedMovies(movies.filter((res) => res.owner === currentUser._id));
+          setRenderMovies(JSON.parse(localStorage.getItem("movies")) || []);
+          setStringSearch((localStorage.getItem("stringSearch")) || "");
         })
         .catch(handleCatchError);
       }
-  }, [loggedIn]);
+  }, [loggedIn, currentUser._id]);
 
   function checkToken() {
     const token = localStorage.getItem("token");
@@ -85,7 +102,6 @@ function App() {
         if (res) {
           setIsSuccessReg(true);
           handleLogin(email, password);
-          console.log('yes')
         }
       })
       .catch((err) => {
@@ -107,7 +123,6 @@ function App() {
     authorization
       .login(email, password)
       .then((res) => {
-        console.log('yes')
         localStorage.setItem('token', res.token);
         setLoggedIn(true);
         navigate('/movies', {replace: true});
@@ -126,20 +141,12 @@ function App() {
       });
   }
 
-  const handleExit = () => {
-    setLoggedIn(false);
-    setCurrentUser({});
-    localStorage.removeItem('token');
-    navigate('/', {replace: true});
-  };
-
   const handleUpdateUser = (name, email) => {
     return mainApi
       .setUserInfo(name, email)
       .then((res) => {
         setIsSuccessReg(true);
         setCurrentUser(res);
-        console.log('updateuser');
       })
       .catch((err) => {
         setIsSuccessReg(false);
@@ -155,36 +162,144 @@ function App() {
       });
   }
 
-  const handleMovies = () => {
-  moviesApi
-      .getAllMovies()
+  const handleExit = () => {
+    setLoggedIn(false);
+    localStorage.clear();
+    localStorage.removeItem("token");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("stringSearch");
+    navigate("/", { replace: true });
+  };
+
+  const getAllMovies = () => {
+    setLoading(true);
+    moviesApi
+    .getAllMovies()
+    .then((movies) => {
+      localStorage.setItem("movies", JSON.stringify(movies));
+      setRenderMovies(movies);
+      setLoading(false);
+    })
+    .catch((err) => {
+      setResStringNotFound(false);
+      console.log(err);
+      setLoading(false);
+  })
+};
+
+  const handleLikeMovie = (data) => {
+    mainApi
+      .likeMovie(data)
       .then((res) => {
-        return res;
+        setSavedMovies([res, ...savedMovies]);
       })
       .catch(handleCatchError);
   };
 
-  const handleLikeMovie = (movie) => {
+  function handleDeleteMovie(film) {
     mainApi
-      .likeMovie(movie)
-      .then((res) => {
-        setCurrentUserMovies([res, ...currentUserMovies]);
-      })
-      .catch(handleCatchError);
-  }
-
-  const handleDeleteMovie = (_id) => {
-    mainApi
-      .deleteMovie(_id)
+      .deleteMovies(film._id)
       .then(() => {
-        const updateCurrentUserMovies = currentUserMovies.filter(
-          (movies) => !(_id === movies._id)
-        );
-        setCurrentUserMovies(updateCurrentUserMovies);
+        const saveFilms = savedMovies.filter((m) => m._id !== film._id);
+        setSavedMovies(saveFilms);
       })
       .catch(handleCatchError);
+  };
+
+  // function handleSearchFilms() {
+  //   if (!renderMovies.length) {
+  //     return []
+  //   }
+
+  //   const searchedMovies = filterMovies(stringSearch, renderMovies);
+  //   const searchedShortMovies = searchedMovies.filter((film) => film.duration <= 40);
+
+  //     if (checkbox) {
+  //       localStorage.setItem("checkbox", checkbox);
+  //       setFilteredMovies(searchedShortMovies);
+  //       if (searchedShortMovies.length === 0) {
+  //         setResStringNotFound(false);
+  //       } else {
+  //         setResStringNotFound(true);
+  //       }
+  //     } else {
+  //       localStorage.setItem("checkbox", checkbox);
+  //       setFilteredMovies(searchedMovies);
+  //       if (searchedMovies.length === 0) {
+  //         setResStringNotFound(false);
+  //       } else {
+  //         setResStringNotFound(true);
+  //       }
+  //     }
+  // }
+
+  function handleSearchFilms() {
+    if (!renderMovies.length) {
+      return []
+    }
+
+    const searchedMovies = filterMovies(stringSearch, renderMovies);
+    const searchedShortMovies = searchedMovies.filter((film) => film.duration <= 40);
+
+      if (checkbox) {
+        localStorage.setItem("checkbox", checkbox);
+        setFilteredMovies(searchedShortMovies);
+        (searchedShortMovies.length === 0) ? setResStringNotFound(false) : setResStringNotFound(true);
+        } else {
+        localStorage.setItem("checkbox", checkbox);
+        setFilteredMovies(searchedMovies);
+        (searchedMovies.length === 0) ? setResStringNotFound(false) : setResStringNotFound(true);
+        }
+    }
+
+  const submitHandleAllMovies = (stringSearch) => {
+    if (!renderMovies.length) {
+      getAllMovies();
+    }
+    setStringSearch(stringSearch);
+    localStorage.setItem("stringSearch", stringSearch);
   }
 
+  useEffect(() => {
+    handleSearchFilms();
+}, [renderMovies, stringSearch, checkbox]);
+
+
+  function handleSaveSearchFilms() {
+    if (!savedMovies.length) {
+      setFilteredSaveMovies([]);
+      return
+    }
+    const searchedMovies = filterMovies(stringSearchSaved, savedMovies);
+    const searchedShortMovies = searchedMovies.filter((film) => film.duration <= 40);
+
+
+      if (savedCheckbox) {
+        localStorage.setItem("savedCheckbox", savedCheckbox);
+        setFilteredSaveMovies(searchedShortMovies);
+        (searchedShortMovies.length === 0) ? setResStringNotFoundSaved(false) : setResStringNotFoundSaved(true);
+      } else {
+        setFilteredSaveMovies(searchedMovies);
+        (searchedMovies.length === 0) ? setResStringNotFoundSaved(false) : setResStringNotFoundSaved(true);
+      }
+  };
+
+  const submitHandlerSavedMovies = (stringSearchSaved) => {
+    setStringSearchSaved(stringSearchSaved);
+  };
+
+  useEffect(() => {
+    handleSaveSearchFilms();
+}, [savedMovies, stringSearchSaved, savedCheckbox]);
+
+
+    function handleCheckboxToggle() {
+      setCheckbox(!checkbox);
+    };
+
+    function handleSaveCheckboxToggle() {
+      setSavedCheckbox(!savedCheckbox);
+    };
 
 
   return (
@@ -216,10 +331,15 @@ function App() {
             <>
               <Header loggedIn={loggedIn}/>
               <Movies
-                handleMovies={handleMovies}
+                loading={loading}
+                submitHandleAllMovies={submitHandleAllMovies}
+                renderMovies={filteredMovies}
+                handleCheckboxToggle={handleCheckboxToggle}
                 handleLikeMovie={handleLikeMovie}
                 handleDeleteMovie={handleDeleteMovie}
-                currentUserMovies={currentUserMovies}
+                savedMovies={savedMovies}
+                checkbox={checkbox}
+                resStringNotFound={resStringNotFound}
               />
               <Footer />
             </>
@@ -237,8 +357,17 @@ function App() {
             <>
               <Header loggedIn={loggedIn}/>
               <SavedMovies
-                handleDeleteMovie={handleDeleteMovie}
-                currentUserMovies={currentUserMovies}
+              loading={loading}
+              loggedIn={loggedIn}
+              movies={filteredSaveMovies}
+              filteredSaveMovies={filteredSaveMovies}
+              savedMovies={savedMovies}
+              handleCheckboxToggle={handleSaveCheckboxToggle}
+              submitHandlerSavedMovies={submitHandlerSavedMovies}
+              handleDeleteMovie={handleDeleteMovie}
+              checkbox={savedCheckbox}
+              setStringSearch={setStringSearchSaved}
+              resStringNotFoundSaved={resStringNotFoundSaved}
               />
               <Footer />
             </>
@@ -251,7 +380,7 @@ function App() {
         path='/signup'
         element={<Register
           onRegister={handleRegister}
-          Loading={Loading}
+          loading={loading}
         />}
         />
 
@@ -259,7 +388,7 @@ function App() {
           path='/signin'
           element={<Login
             onLogin={handleLogin}
-            Loading={Loading}
+            loading={loading}
           />}
         />
 

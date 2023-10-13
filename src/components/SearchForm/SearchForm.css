@@ -8,8 +8,19 @@
   border-bottom: 1px solid #424242;
 }
 
-.search__form-wrapper {
-  padding-bottom: 42px;
+.search-error {
+  display: block;
+  margin: 0;
+  color: #EE3465;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  min-height: 12px;
+  padding-top: 8px;
+  padding-bottom: 34px;
+  padding-left: 20px;
 }
 
 .search__form-input {
@@ -74,7 +85,7 @@
     padding-left: 18px;
   }
 
-  .search__form-wrapper {
-    padding-bottom: 45px;
+  .search-error {
+    padding-bottom: 37px;
   }
 }
