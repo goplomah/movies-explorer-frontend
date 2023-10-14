@@ -1,7 +1,5 @@
 import './MoviesCard.css';
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from 'react';
-
 
 function MoviesCard({
   film,
@@ -10,18 +8,12 @@ function MoviesCard({
   handleDeleteMovie
 }) {
   const location = useLocation().pathname;
-  const [like, setLike] = useState(false);
   const image = location === "/movies" ? `https://api.nomoreparties.co${film.image.url}` : `${film.image}`;
-
-
-  useEffect(() => {
-    setLike(savedMovies.some((i) => i.movieId === film.id))
-  }, [savedMovies, film.id]);
+  const isLike = (savedMovies.some((i) => i.movieId === film.id))
 
   function handleLikeMovies() {
-    if(like) {
+    if(isLike) {
       handleDeleteMovie(savedMovies.filter((i) => i.movieId === film.id)[0]);
-      setLike(false);
     } else {
       handleLikeMovie(film);
     }
@@ -53,7 +45,7 @@ function MoviesCard({
           <h2 className="card__title">{film.nameRU}</h2>
           {
             location === '/movies'
-            ? <button type="submit" className={like ? "card__button-like card__button-like_type_active opacity_type_button" : "card__button-like opacity_type_button"} onClick={handleLikeMovies}></button>
+            ? <button type="submit" className={isLike ? "card__button-like card__button-like_type_active opacity_type_button" : "card__button-like opacity_type_button"} onClick={handleLikeMovies}></button>
             : <button type="button" className="card__button-delete opacity_type_button" onClick={handleDelMovies}></button>
           }
         </div>
