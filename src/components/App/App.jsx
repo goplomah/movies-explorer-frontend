@@ -206,33 +206,6 @@ function App() {
       .catch(handleCatchError);
   };
 
-  // function handleSearchFilms() {
-  //   if (!renderMovies.length) {
-  //     return []
-  //   }
-
-  //   const searchedMovies = filterMovies(stringSearch, renderMovies);
-  //   const searchedShortMovies = searchedMovies.filter((film) => film.duration <= 40);
-
-  //     if (checkbox) {
-  //       localStorage.setItem("checkbox", checkbox);
-  //       setFilteredMovies(searchedShortMovies);
-  //       if (searchedShortMovies.length === 0) {
-  //         setResStringNotFound(false);
-  //       } else {
-  //         setResStringNotFound(true);
-  //       }
-  //     } else {
-  //       localStorage.setItem("checkbox", checkbox);
-  //       setFilteredMovies(searchedMovies);
-  //       if (searchedMovies.length === 0) {
-  //         setResStringNotFound(false);
-  //       } else {
-  //         setResStringNotFound(true);
-  //       }
-  //     }
-  // }
-
   function handleSearchFilms() {
     if (!renderMovies.length) {
       return []
@@ -403,6 +376,7 @@ function App() {
               <Profile
                 onExit={handleExit}
                 onUpdateUser={handleUpdateUser}
+                loading={loading}
               />
             </>
          }

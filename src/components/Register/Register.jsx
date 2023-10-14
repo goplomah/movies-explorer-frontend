@@ -5,7 +5,7 @@ import Input from '../Input/Input';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import Spinner from '../Spinner/Spinner';
 
-function Register({ onRegister, Loading }) {
+function Register({ onRegister, loading }) {
   const {values, handleChange, errors, isValid} = useFormAndValidation();
 
   const handleSubmit = (e) => {
@@ -32,7 +32,6 @@ function Register({ onRegister, Loading }) {
                   onChange={handleChange}
                   value={values.name || ""}
                   error={errors.name}
-                  pattern={'^[A-Za-zА-Яа-яЁё\\-\\s]+$'}
                 />
                 <Input
                   title='E-mail'
@@ -43,7 +42,8 @@ function Register({ onRegister, Loading }) {
                   onChange={handleChange}
                   value={values.email || ""}
                   error={errors.email}
-                />
+                  pattern={"[^ ]+@[^ ]+\\.([a-z]{2,4})"}
+/>
                 <Input
                   title='Пароль'
                   id="password-input"
@@ -56,7 +56,7 @@ function Register({ onRegister, Loading }) {
                 />
                 </div>
                 <div className="form__button-wrapper form__button-wrapper_type_register">
-                <button type="submit" className={`${isValid ? 'form__button opacity_type_button' : 'form__button opacity_type_button form__button_type_disabled'} || ${Loading && 'form__button_type_disabled form__button_type_spinner'}`}>{Loading ? <Spinner /> : "Зарегистрироваться"}</button>
+                <button type="submit" disabled={!isValid && loading} className={`${isValid ? 'form__button opacity_type_button' : 'form__button opacity_type_button form__button_type_disabled'} && ${loading && 'form__button_type_disabled form__button_type_spinner'}`}>{loading ? <Spinner /> : "Зарегистрироваться"}</button>
                 <p className="form__send-text">Уже зарегистрированы?
                 <Link to="/signin" className="form__link opacity">Войти</Link></p>
                 </div>

@@ -3,7 +3,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext, useEffect } from "react";
 
-function Profile({ onExit, onUpdateUser }) {
+function Profile({ onExit, onUpdateUser, loading }) {
   const currentUser = useContext(CurrentUserContext);
   const {values, handleChange, isValid, setValues, errors} = useFormAndValidation();
 
@@ -61,13 +61,16 @@ function Profile({ onExit, onUpdateUser }) {
               required
               onChange={handleChange}
               value={values.email || ""}
+              pattern={"[^ ]+@[^ ]+\\.([a-z]{2,4})"}
             />
             </div>
             <span className='profile__form-input-error'>{errors.email}</span>
           </div>
         </div>
         <div className="profile__button-wrapper">
-             <button type="submit" className={`profile__button-edit opacity_type_button ${(!isValid || (values.name === currentUser.name && values.email === currentUser.email)) && 'profile__button-edit_type_disabled'}`}
+             <button type="submit"
+             disabled={!isValid && loading}
+              className={`profile__button-edit opacity_type_button ${(!isValid || (values.name === currentUser.name && values.email === currentUser.email)) && 'profile__button-edit_type_disabled'}`}
             >Редактировать</button>
           <button type="button" className="profile__button-exit opacity_type_button profile__button-exit-link" onClick={onExit}>Выйти из аккаунта</button>
         </div>
