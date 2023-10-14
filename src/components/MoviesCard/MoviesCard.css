@@ -15,6 +15,11 @@
   transition: .7s ease-in-out;
 }
 
+.card__trailerlink {
+  text-decoration: none;
+  color: #fff;
+}
+
 .card:hover {
   box-shadow: 3px 3px 5px #3DDC84;
   opacity: 0.9;

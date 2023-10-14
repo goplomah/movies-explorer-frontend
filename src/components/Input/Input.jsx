@@ -1,10 +1,10 @@
-function Input ({ title, id, type, name, placeholder, error }) {
+function Input ({ title, id, type, name, placeholder, error, onChange, pattern }) {
   const lengthProperties =
   type === "name"
   ? { minLength: 3, maxLength: 30 }
   : type === "password"
   ? { minLength: 5, maxLength: 30 }
-  : null;;
+  : null;
   return (
     <label className="form__item">
       <p className="form__text">{title}</p>
@@ -16,6 +16,8 @@ function Input ({ title, id, type, name, placeholder, error }) {
         placeholder={placeholder}
         required
         {...lengthProperties}
+        onChange={onChange}
+        pattern={pattern}
         />
       <span className="form__error">{error}</span>
     </label>

@@ -86,6 +86,21 @@
   font-weight: 500;
   line-height: normal;
   border: none;
+  display: flex;
+  justify-content: center;
+  height: 45px;
+  align-items: center;
+}
+
+.form__button_type_spinner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.form__button_type_disabled {
+  opacity: 0.2;
+  color: #000;
+  pointer-events: none;
 }
 
 .form__send-text {
@@ -116,10 +131,6 @@
     margin-bottom: 80px;
     text-align: center;
   }
-
-  /* .form__button-wrapper {
-    padding-top: 158px;
-  } */
 
   .form__button {
     font-size: 12px;
