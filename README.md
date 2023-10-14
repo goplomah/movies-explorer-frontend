@@ -54,3 +54,6 @@
 - переделать обновление профиля (заменить изменение почты на изменение пароля); 
 
 ### Для вёрстки использовался макет "dark-3"
+
+[Сайт тут](goplomah.nomoredomainsrocks.ru)
+[Ссылка на пулреквест](https://github.com/goplomah/movies-explorer-frontend/pull/2)

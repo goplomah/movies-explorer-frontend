@@ -52,7 +52,7 @@ class Authorization {
 }
 
 const authorization = new Authorization({
-  dataBase: "https://api.goplomah.nomoredomains.sbs/",
+  dataBase: 'https://api.goplomah.nomoredomains.sbs/',
   // dataBase: "http://localhost:3000/",
 });
 
