@@ -55,5 +55,7 @@
 
 ### Для вёрстки использовался макет "dark-3"
 
-[Сайт тут](goplomah.nomoredomainsrocks.ru)
+[Сайт тут](https://goplomah.nomoredomainsrocks.ru)
+
+
 [Ссылка на пулреквест](https://github.com/goplomah/movies-explorer-frontend/pull/2)
